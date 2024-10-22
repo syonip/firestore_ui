@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_ui/firestore_ui.dart';
+import 'package:firestore_ui/firestore_ui.dart' as fu;
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
@@ -16,7 +16,7 @@ typedef Widget FirestoreAnimatedStaggeredItemBuilder<T>(
   int index,
 );
 
-typedef StaggeredTile FirestoreStaggeredTileBuilder<T>(
+typedef fu.StaggeredTile FirestoreStaggeredTileBuilder<T>(
   int index,
   DocumentSnapshot<T>? snapshot,
 );
@@ -77,7 +77,7 @@ class FirestoreAnimatedStaggered<T> extends StatefulWidget {
 
   /// Called before any operation with a [DocumentSnapshot];
   /// If it returns `true`, then dismisses that [DocumentSnapshot] from the list
-  final FilterCallback<T>? filter;
+  final fu.FilterCallback<T>? filter;
 
   /// This will change `onDocumentAdded` call to `.add` instead of `.insert`,
   /// which might help if your query doesn't care about order changes
@@ -186,14 +186,14 @@ class FirestoreAnimatedStaggeredState<T>
     extends State<FirestoreAnimatedStaggered<T>> {
   final GlobalKey<_AnimatedStaggeredGridState> _animatedListKey =
       GlobalKey<_AnimatedStaggeredGridState>();
-  FirestoreList<T>? _model;
+  fu.FirestoreList<T>? _model;
   Exception? _error;
   bool _loaded = false;
 
   /// Should only be called without setState, inside @override methods here
   _updateModel() {
     _model?.clear();
-    _model = FirestoreList<T>(
+    _model = fu.FirestoreList<T>(
       query: widget.query,
       onDocumentAdded: _onDocumentAdded,
       onDocumentRemoved: _onDocumentRemoved,

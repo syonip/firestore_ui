@@ -78,7 +78,7 @@ class _AnimatedStaggeredGrid extends StatefulWidget {
   final _AnimatedStaggeredGridItemBuilder itemBuilder;
 
   /// Signature for a function that creates [StaggeredTile] for a given index.
-  final IndexedStaggeredTileBuilder staggeredTileBuilder;
+  final fu.IndexedStaggeredTileBuilder staggeredTileBuilder;
 
   /// The number of children in the cross axis.
   final int crossAxisCount;
@@ -356,7 +356,7 @@ class _AnimatedStaggeredGridState extends State<_AnimatedStaggeredGrid>
 
   @override
   Widget build(BuildContext context) {
-    return StaggeredGridView.countBuilder(
+    return fu.StaggeredGridView.countBuilder(
       staggeredTileBuilder: widget.staggeredTileBuilder,
       crossAxisCount: widget.crossAxisCount,
       mainAxisSpacing: widget.mainAxisSpacing,
